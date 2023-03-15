@@ -1,7 +1,6 @@
-package repository;
+package com.eduit.app.springboot.repository;
 
-import entity.CategoryEntity;
-import entity.UserEntity;
+import com.eduit.app.springboot.entity.CategoryEntity;
 
 import org.springframework.data.repository.Repository;
 

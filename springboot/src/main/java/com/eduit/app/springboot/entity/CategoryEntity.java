@@ -1,4 +1,4 @@
-package entity;
+package com.eduit.app.springboot.entity;
 
 import javax.persistence.*;
 import java.util.Date;

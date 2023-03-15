@@ -1,7 +1,7 @@
-package com.eduit.app.springboot;
+package com.eduit.app.springboot.springbootapi;
 
 
-import conf.AppConfig;
+import com.eduit.app.springboot.conf.AppConfig;
 import org.springdoc.webmvc.ui.SwaggerConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

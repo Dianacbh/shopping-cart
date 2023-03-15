@@ -1,6 +1,4 @@
-package entity;
-
-import org.apache.commons.lang3.Validate;
+package com.eduit.app.springboot.entity;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -10,8 +8,8 @@ import java.util.Date;
  * @author diana
  */
 @Entity
-@Table(name = "cart")
-public class CartEntity {
+@Table(name = "ShoppingOrder")
+public class ShoppingOrderEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
@@ -23,7 +21,6 @@ public class CartEntity {
     @Column(name = "product_list", nullable = false)
     private String productList;
 
-
     @Column(name = "date_created", nullable = false)
     private Date dateCreated;
 
@@ -31,7 +28,7 @@ public class CartEntity {
     private Date dateDeleted;
 
 
-    public CartEntity() {
+    public ShoppingOrderEntity() {
     }
 
     public Long getId() {

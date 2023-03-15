@@ -1,9 +1,7 @@
-package repository;
+package com.eduit.app.springboot.repository;
 
-import entity.CartEntity;
-import entity.UserEntity;
+import com.eduit.app.springboot.entity.CartEntity;
 import org.springframework.data.repository.CrudRepository;
-import org.springframework.data.repository.Repository;
 
 public interface CartRepository extends CrudRepository<CartEntity, Long> {
 

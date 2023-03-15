@@ -1,4 +1,4 @@
-package entity;
+package com.eduit.app.springboot.entity;
 
 import org.apache.commons.lang3.Validate;
 import org.springframework.boot.autoconfigure.ldap.embedded.EmbeddedLdapProperties;
@@ -86,7 +86,6 @@ public class UserEntity {
     }
 
     public void setDateCreated(final Date dateCreated) {
-        Validate.notBlank(dateCreated, "The dateCreated cannot be null or black");
         this.dateCreated = dateCreated;
     }
 
@@ -95,7 +94,6 @@ public class UserEntity {
     }
 
     public void setDateDeleted(final Date dateDeleted) {
-        Validate.notBlank(dateDeleted, "The dateDeleted cannot be null or black");
         this.dateDeleted = dateDeleted;
     }
 }

@@ -1,7 +1,6 @@
-package repository;
+package com.eduit.app.springboot.repository;
 
-import entity.ProductEntity;
-import entity.UserEntity;
+import com.eduit.app.springboot.entity.ProductEntity;
 import org.springframework.data.repository.Repository;
 
 import java.util.List;

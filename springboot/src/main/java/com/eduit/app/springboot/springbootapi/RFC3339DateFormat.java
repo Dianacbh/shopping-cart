@@ -1,4 +1,4 @@
-package com.eduit.app.springboot;
+package com.eduit.app.springboot.springbootapi;
 
 import com.fasterxml.jackson.databind.util.ISO8601DateFormat;
 import com.fasterxml.jackson.databind.util.ISO8601Utils;

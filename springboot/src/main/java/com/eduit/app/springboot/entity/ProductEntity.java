@@ -1,6 +1,4 @@
-package entity;
-
-import org.apache.commons.lang3.Validate;
+package com.eduit.app.springboot.entity;
 
 import javax.persistence.*;
 import java.math.BigDecimal;

@@ -1,9 +1,7 @@
-package repository;
+package com.eduit.app.springboot.repository;
 
-import entity.UserEntity;
+import com.eduit.app.springboot.entity.UserEntity;
 import org.springframework.data.repository.Repository;
-
-import java.util.List;
 
 public interface UserRepository extends Repository <UserEntity, Long> {
 
