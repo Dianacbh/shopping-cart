@@ -11,29 +11,40 @@ import java.util.Date;
  * @author diana
  */
 @Entity
-@Table(name = "users")
-public class UserEntity {
+@Table(name = UserEntity.TABLE_NAME)
 
+public class UserEntity {
+    public static final String TABLE_NAME = "users";
+
+    public static final String ROLE_RELATION_TABLE_NAME = "users_roles";
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
     private Long id;
 
-    @Column(nullable = false)
-    private String userName;
+    @Column(nullable = false, unique = true)
+    private String username;
+
     @Column(name = "first_name", nullable = false)
     private String firstName;
 
     @Column(name = "last_name", nullable = false)
     private String lastName;
+
+    @Column(nullable = false)
+    private String email;
+
     @Column(nullable = false)
     private String password;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "role")
+    private UserRoleEnum role;
 
     @Column(name = "date_created", nullable = false)
     private Date dateCreated;
 
-    @Column(name = "date_deleted", nullable = false)
+    @Column(name = "date_deleted", nullable = true)
     private Date dateDeleted;
-
 
     public UserEntity() {
     }
@@ -49,10 +60,12 @@ public class UserEntity {
         return userName;
     }
 
-    public void setUserName(final String userName) {
+
+    public void setUserName(String userName) {
         Validate.notBlank(userName, "The userName cannot be null or black");
         this.userName = userName;
     }
+
 
     public String getFirstName() {
         return firstName;
@@ -80,12 +93,27 @@ public class UserEntity {
         Validate.notBlank(password, "The password cannot be null or black");
         this.password = password;
     }
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public UserRoleEnum getRole() {
+        return role;
+    }
+
+    public void setRole(UserRoleEnum) {
+        this.role = role;
+    }
 
     public Date getDateCreated() {
         return dateCreated;
     }
 
-    public void setDateCreated(final Date dateCreated) {
+    public void setDateCreated(Date dateCreated) {
         this.dateCreated = dateCreated;
     }
 
@@ -93,7 +121,12 @@ public class UserEntity {
         return dateDeleted;
     }
 
-    public void setDateDeleted(final Date dateDeleted) {
+    public void setDateDeleted(Date dateDeleted) {
         this.dateDeleted = dateDeleted;
     }
-}
+
+
+
+
+
+

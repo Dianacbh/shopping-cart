@@ -1,28 +1,29 @@
 package com.eduit.app.springboot.model;
 
-import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.v3.oas.annotations.media.Schema;
 import org.springframework.validation.annotation.Validated;
+
 import javax.validation.Valid;
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotNull;
+import java.util.Objects;
 
 /**
  * ResponseContainerResponseDTO
  */
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2023-03-15T19:40:20.264214924Z[GMT]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2023-03-21T20:52:22.931324395Z[GMT]")
 
 
-public class ResponseContainerResponseDTO   {
+public class ResponseContainerResponseDTO {
   @JsonProperty("errors")
   private ErrorResponseDTO errors = null;
 
+  @JsonProperty("data")
+  private UserDTO data = null;
+
   @JsonProperty("meta")
   private MetaInformationResponseDTO meta = null;
-
-  @JsonProperty("data")
-  private DataResponseDTO data = null;
 
   public ResponseContainerResponseDTO errors(ErrorResponseDTO errors) {
     this.errors = errors;
@@ -42,6 +43,26 @@ public class ResponseContainerResponseDTO   {
 
   public void setErrors(ErrorResponseDTO errors) {
     this.errors = errors;
+  }
+
+  public ResponseContainerResponseDTO data(UserDTO data) {
+    this.data = data;
+    return this;
+  }
+
+  /**
+   * Get data
+   * @return data
+   **/
+  @Schema(description = "")
+  
+    @Valid
+    public UserDTO getData() {
+    return data;
+  }
+
+  public void setData(UserDTO data) {
+    this.data = data;
   }
 
   public ResponseContainerResponseDTO meta(MetaInformationResponseDTO meta) {
@@ -65,26 +86,6 @@ public class ResponseContainerResponseDTO   {
     this.meta = meta;
   }
 
-  public ResponseContainerResponseDTO data(DataResponseDTO data) {
-    this.data = data;
-    return this;
-  }
-
-  /**
-   * Get data
-   * @return data
-   **/
-  @Schema(description = "")
-  
-    @Valid
-    public DataResponseDTO getData() {
-    return data;
-  }
-
-  public void setData(DataResponseDTO data) {
-    this.data = data;
-  }
-
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -94,15 +95,15 @@ public class ResponseContainerResponseDTO   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ResponseContainerResponseDTO responseContainerResponseDTO = (ResponseContainerResponseDTO) o;
-    return Objects.equals(this.errors, responseContainerResponseDTO.errors) &&
-        Objects.equals(this.meta, responseContainerResponseDTO.meta) &&
-        Objects.equals(this.data, responseContainerResponseDTO.data);
+    ResponseContainerResponseDTO responseContainerUserResponseDTO = (ResponseContainerResponseDTO) o;
+    return Objects.equals(this.errors, responseContainerUserResponseDTO.errors) &&
+        Objects.equals(this.data, responseContainerUserResponseDTO.data) &&
+        Objects.equals(this.meta, responseContainerUserResponseDTO.meta);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(errors, meta, data);
+    return Objects.hash(errors, data, meta);
   }
 
   @Override
@@ -111,8 +112,8 @@ public class ResponseContainerResponseDTO   {
     sb.append("class ResponseContainerResponseDTO {\n");
     
     sb.append("    errors: ").append(toIndentedString(errors)).append("\n");
-    sb.append("    meta: ").append(toIndentedString(meta)).append("\n");
     sb.append("    data: ").append(toIndentedString(data)).append("\n");
+    sb.append("    meta: ").append(toIndentedString(meta)).append("\n");
     sb.append("}");
     return sb.toString();
   }

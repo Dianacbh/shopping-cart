@@ -5,60 +5,32 @@
  */
 package com.eduit.app.springboot.api;
 
-import com.eduit.app.springboot.model.ResponseContainerResponseDTO;
-import com.eduit.app.springboot.model.UserDTO;
+import com.eduit.app.springboot.model.UserListDTO;
 import com.eduit.app.springboot.model.UserRequestDTO;
-import com.eduit.app.springboot.model.UserRoleRequestDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
-import io.swagger.v3.oas.annotations.responses.ApiResponses;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.validation.Valid;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2023-03-15T19:40:20.264214924Z[GMT]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2023-03-21T20:52:22.931324395Z[GMT]")
 @Validated
 public interface UsersApi {
-
-    @Operation(summary = "Add role to a user", description = "Add a role to a user, authentication required.", security = {
-        @SecurityRequirement(name = "bearerAuth")    }, tags={ "user" })
-    @ApiResponses(value = { 
-        @ApiResponse(responseCode = "200", description = "successful operation response a EmptyResponseDTO as data", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ResponseContainerResponseDTO.class))),
-        
-        @ApiResponse(responseCode = "401", description = "Access token is missing or invalid") })
-    @RequestMapping(value = "/users/user/{userId}/role/{roleId}",
-        produces = { "application/json" }, 
-        method = RequestMethod.POST)
-    ResponseEntity<ResponseContainerResponseDTO> addRoleToUser(@Parameter(in = ParameterIn.PATH, description = "the user id", required=true, schema=@Schema()) @PathVariable("userId") Long userId, @Parameter(in = ParameterIn.PATH, description = "the role id", required=true, schema=@Schema()) @PathVariable("roleId") Long roleId);
-
-
-    @Operation(summary = "Create roles", description = "Create a roles, authentication required.", security = {
-        @SecurityRequirement(name = "bearerAuth")    }, tags={ "user" })
-    @ApiResponses(value = { 
-        @ApiResponse(responseCode = "200", description = "successful operation response a UserRoleDTO as data", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ResponseContainerResponseDTO.class))),
-        
-        @ApiResponse(responseCode = "401", description = "Access token is missing or invalid") })
-    @RequestMapping(value = "/users/role",
-        produces = { "application/json" }, 
-        consumes = { "application/json" }, 
-        method = RequestMethod.POST)
-    ResponseEntity<ResponseContainerResponseDTO> createRole(@Parameter(in = ParameterIn.DEFAULT, description = "Created roles object", schema=@Schema()) @Valid @RequestBody UserRoleRequestDTO body);
-
 
     @Operation(summary = "Create user", description = "Create a user, authentication required.", security = {
         @SecurityRequirement(name = "bearerAuth")    }, tags={ "user" })
     @ApiResponses(value = { 
-        @ApiResponse(responseCode = "200", description = "successful operation response a UserDTO as data", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ResponseContainerResponseDTO.class))),
+        @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ResponseContainerResponseDTO.class))),
         
         @ApiResponse(responseCode = "401", description = "Access token is missing or invalid") })
     @RequestMapping(value = "/users/user",
@@ -68,84 +40,14 @@ public interface UsersApi {
     ResponseEntity<ResponseContainerResponseDTO> createUser(@Parameter(in = ParameterIn.DEFAULT, description = "Created user object", schema=@Schema()) @Valid @RequestBody UserRequestDTO body);
 
 
-    @Operation(summary = "Delete user", description = "Delete a user, authentication required.", security = {
-        @SecurityRequirement(name = "bearerAuth")    }, tags={ "user" })
-    @ApiResponses(value = { 
-        @ApiResponse(responseCode = "200", description = "successful operation  response a EmptyResponseDTO as data", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ResponseContainerResponseDTO.class))),
-        
-        @ApiResponse(responseCode = "401", description = "Access token is missing or invalid") })
-    @RequestMapping(value = "/users/user/{userId}",
-        produces = { "application/json" }, 
-        consumes = { "application/json" }, 
-        method = RequestMethod.DELETE)
-    ResponseEntity<ResponseContainerResponseDTO> deleteUser(@Parameter(in = ParameterIn.PATH, description = "the user id", required=true, schema=@Schema()) @PathVariable("userId") Long userId, @Parameter(in = ParameterIn.DEFAULT, description = "Created user object", schema=@Schema()) @Valid @RequestBody UserDTO body);
-
-
-    @Operation(summary = "Retrieve the roles from a user.", description = "Retrieve the roles from a user, authentication required.", security = {
-        @SecurityRequirement(name = "bearerAuth")    }, tags={ "user" })
-    @ApiResponses(value = { 
-        @ApiResponse(responseCode = "200", description = "successful operation response a UserRoleListDTO as data", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ResponseContainerResponseDTO.class))),
-        
-        @ApiResponse(responseCode = "401", description = "Access token is missing or invalid") })
-    @RequestMapping(value = "/users/user/{userId}/roles",
-        produces = { "application/json" }, 
-        method = RequestMethod.GET)
-    ResponseEntity<ResponseContainerResponseDTO> getUserRoles(@Parameter(in = ParameterIn.PATH, description = "the user id", required=true, schema=@Schema()) @PathVariable("userId") Long userId);
-
-
-    @Operation(summary = "Remove role from a user", description = "Remove a role from a user, authentication required.", security = {
-        @SecurityRequirement(name = "bearerAuth")    }, tags={ "user" })
-    @ApiResponses(value = { 
-        @ApiResponse(responseCode = "200", description = "successful operation response a EmptyResponseDTO as data", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ResponseContainerResponseDTO.class))),
-        
-        @ApiResponse(responseCode = "401", description = "Access token is missing or invalid") })
-    @RequestMapping(value = "/users/user/{userId}/role/{roleId}",
-        produces = { "application/json" }, 
-        method = RequestMethod.DELETE)
-    ResponseEntity<ResponseContainerResponseDTO> removeRoleToUser(@Parameter(in = ParameterIn.PATH, description = "the user id", required=true, schema=@Schema()) @PathVariable("userId") Long userId, @Parameter(in = ParameterIn.PATH, description = "the role id", required=true, schema=@Schema()) @PathVariable("roleId") Long roleId);
-
-
-    @Operation(summary = "Retrieve a list of roles", description = "Retrieve a list of roles, authentication required.", security = {
-        @SecurityRequirement(name = "bearerAuth")    }, tags={ "user" })
-    @ApiResponses(value = { 
-        @ApiResponse(responseCode = "200", description = "successful operation response a UserRoleListDTO as data", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ResponseContainerResponseDTO.class))) })
-    @RequestMapping(value = "/users/role",
-        produces = { "application/json" }, 
-        method = RequestMethod.GET)
-    ResponseEntity<ResponseContainerResponseDTO> retrieveAllRoles();
-
-
     @Operation(summary = "Retrieve a list of users", description = "Retrieve a list of users, authentication required.", security = {
         @SecurityRequirement(name = "bearerAuth")    }, tags={ "user" })
     @ApiResponses(value = { 
-        @ApiResponse(responseCode = "200", description = "successful operation response a UserListDTO as data", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ResponseContainerResponseDTO.class))) })
+        @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(mediaType = "application/json", schema = @Schema(implementation = UserListDTO.class))) })
     @RequestMapping(value = "/users/user",
         produces = { "application/json" }, 
         method = RequestMethod.GET)
-    ResponseEntity<ResponseContainerResponseDTO> retrieveAllUsers();
-
-
-    @Operation(summary = "Retrieve a user", description = "Retrieve a user, authentication required.", security = {
-        @SecurityRequirement(name = "bearerAuth")    }, tags={ "user" })
-    @ApiResponses(value = { 
-        @ApiResponse(responseCode = "200", description = "successful operation response a UserDTO as data", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ResponseContainerResponseDTO.class))) })
-    @RequestMapping(value = "/users/user/{userId}",
-        produces = { "application/json" }, 
-        method = RequestMethod.GET)
-    ResponseEntity<ResponseContainerResponseDTO> retrieveUser(@Parameter(in = ParameterIn.PATH, description = "the user id", required=true, schema=@Schema()) @PathVariable("userId") Long userId);
-
-
-    @Operation(summary = "Update user", description = "Update a user, authentication required.", security = {
-        @SecurityRequirement(name = "bearerAuth")    }, tags={ "user" })
-    @ApiResponses(value = { 
-        @ApiResponse(responseCode = "200", description = "successful operation response a UserDTO as data", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ResponseContainerResponseDTO.class))),
-        
-        @ApiResponse(responseCode = "401", description = "Access token is missing or invalid") })
-    @RequestMapping(value = "/users/user/{userId}",
-        produces = { "application/json" }, 
-        consumes = { "application/json" }, 
-        method = RequestMethod.PUT)
-    ResponseEntity<ResponseContainerResponseDTO> updateUser(@Parameter(in = ParameterIn.PATH, description = "the user id", required=true, schema=@Schema()) @PathVariable("userId") Long userId, @Parameter(in = ParameterIn.DEFAULT, description = "Updated user object", schema=@Schema()) @Valid @RequestBody UserDTO body);
+    ResponseEntity<UserListDTO> retrieveAllUsers();
 
 }
 

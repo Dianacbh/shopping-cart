@@ -1,52 +1,18 @@
 package com.eduit.app.springboot.model;
 
-import java.util.Objects;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import io.swagger.v3.oas.annotations.media.Schema;
-import java.util.ArrayList;
-import java.util.List;
 import org.springframework.validation.annotation.Validated;
-import javax.validation.Valid;
+
+import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  * UserListDTO
  */
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2023-03-15T19:40:20.264214924Z[GMT]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2023-03-21T20:52:22.931324395Z[GMT]")
 
 
-public class UserListDTO  implements OneOfDataResponseDTO {
-  @JsonProperty("items")
-  @Valid
-  private List<UserDTO> items = null;
-
-  public UserListDTO items(List<UserDTO> items) {
-    this.items = items;
-    return this;
-  }
-
-  public UserListDTO addItemsItem(UserDTO itemsItem) {
-    if (this.items == null) {
-      this.items = new ArrayList<UserDTO>();
-    }
-    this.items.add(itemsItem);
-    return this;
-  }
-
-  /**
-   * Get items
-   * @return items
-   **/
-  @Schema(description = "")
-      @Valid
-    public List<UserDTO> getItems() {
-    return items;
-  }
-
-  public void setItems(List<UserDTO> items) {
-    this.items = items;
-  }
-
+public class UserListDTO extends ArrayList<UserDTO>  {
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -56,21 +22,19 @@ public class UserListDTO  implements OneOfDataResponseDTO {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    UserListDTO userListDTO = (UserListDTO) o;
-    return Objects.equals(this.items, userListDTO.items);
+    return true;
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(items);
+    return Objects.hash(super.hashCode());
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class UserListDTO {\n");
-    
-    sb.append("    items: ").append(toIndentedString(items)).append("\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("}");
     return sb.toString();
   }

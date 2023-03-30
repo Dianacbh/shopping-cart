@@ -75,4 +75,11 @@ public class CategoryEntity {
     public void setDateDeleted(Date dateDeleted) {
        this.dateDeleted = dateDeleted;
     }
+
+    public CategoryEntity getParent() {
+        return null;
+    }
+
+    public void setParent(CategoryEntity parent) {
+    }
 }

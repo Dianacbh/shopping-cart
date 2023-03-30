@@ -1,9 +1,8 @@
 package com.eduit.app.springboot.entity;
 
-import org.apache.commons.lang3.Validate;
-
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 /**
  * Estamos creando el esqueleto y haciendo pruebas con la BD
@@ -13,26 +12,33 @@ import java.util.Date;
 @Table(name = "cart")
 public class CartEntity {
 
+    public static final String TABLE_NAME = "carts";
+
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    /**
+     * This is the entity id.
+     * If this attribute is null, that means the entity is not persisted yet.
+     */
     private Long id;
 
-    @Column(nullable = false)
-    private String userId;
+    @ManyToOne
+    @JoinColumn(name ="user_id")
+    private UserEntity user;
 
-    @Column(name = "product_list", nullable = false)
-    private String productList;
-
+    @OneToMany(mappedBy = "cart")
+    private Set<CartDetailEntity> details;
 
     @Column(name = "date_created", nullable = false)
     private Date dateCreated;
 
-    @Column(name = "date_deleted", nullable = false)
+    @Column(name = "date_deleted", nullable = true)
     private Date dateDeleted;
 
-
-    public CartEntity() {
-    }
+    /**
+     * This is the default empty class constructor required by Hibernate.
+     */
+    public CartEntity() {}
 
     public Long getId() {
         return id;
@@ -42,20 +48,20 @@ public class CartEntity {
         this.id = id;
     }
 
-    public String getUserId() {
-        return userId;
+    public UserEntity getUser() {
+        return user;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setUser(UserEntity user) {
+        this.user = user;
     }
 
-    public String getProductList() {
-        return productList;
+    public Set<CartDetailEntity> getDetails() {
+        return details;
     }
 
-    public void setProductList(String productList) {
-        this.productList = productList;
+    public void setDetails(Set<CartDetailEntity> details) {
+        this.details = details;
     }
 
     public Date getDateCreated() {

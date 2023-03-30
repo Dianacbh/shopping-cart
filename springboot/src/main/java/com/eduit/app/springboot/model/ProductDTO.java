@@ -6,6 +6,7 @@ import org.springframework.validation.annotation.Validated;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -13,10 +14,10 @@ import java.util.Objects;
  * ProductDTO
  */
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2023-03-15T19:40:20.264214924Z[GMT]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2023-03-21T20:52:22.931324395Z[GMT]")
 
 
-public class ProductDTO  implements OneOfDataResponseDTO {
+public class ProductDTO   {
   @JsonProperty("id")
   private Long id = null;
 
@@ -30,7 +31,7 @@ public class ProductDTO  implements OneOfDataResponseDTO {
   private Double price = null;
 
   @JsonProperty("qty")
-  private Integer qty = null;
+  private BigDecimal qty = null;
 
   @JsonProperty("category")
   private CategoryDTO category = null;
@@ -119,7 +120,7 @@ public class ProductDTO  implements OneOfDataResponseDTO {
     this.price = price;
   }
 
-  public ProductDTO qty(Integer qty) {
+  public ProductDTO qty(BigDecimal qty) {
     this.qty = qty;
     return this;
   }
@@ -131,11 +132,12 @@ public class ProductDTO  implements OneOfDataResponseDTO {
   @Schema(example = "2", required = true, description = "the stock quantity.")
       @NotNull
 
-    public Integer getQty() {
+    @Valid
+    public BigDecimal getQty() {
     return qty;
   }
 
-  public void setQty(Integer qty) {
+  public void setQty(BigDecimal qty) {
     this.qty = qty;
   }
 

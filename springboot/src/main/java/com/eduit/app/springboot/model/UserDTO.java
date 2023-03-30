@@ -14,10 +14,10 @@ import java.util.Objects;
  * UserDTO
  */
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2023-03-15T19:40:20.264214924Z[GMT]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2023-03-21T20:52:22.931324395Z[GMT]")
 
 
-public class UserDTO  implements OneOfDataResponseDTO {
+public class UserDTO   {
   @JsonProperty("id")
   private Long id = null;
 
@@ -168,13 +168,12 @@ public class UserDTO  implements OneOfDataResponseDTO {
 
   /**
    * Get dateCreated
+   *
    * @return dateCreated
    **/
   @Schema(example = "Wed Feb 01 00:00:00 GMT 2023", required = true, description = "")
-      @NotNull
 
-    @Valid
-    public LocalDate getDateCreated() {
+  public LocalDate getDateCreated() {
     return dateCreated;
   }
 
@@ -253,5 +252,10 @@ public class UserDTO  implements OneOfDataResponseDTO {
       return "null";
     }
     return o.toString().replace("\n", "\n    ");
+  }
+
+
+  public String getRole() {
+    return null;
   }
 }

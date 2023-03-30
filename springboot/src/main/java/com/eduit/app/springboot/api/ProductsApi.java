@@ -6,84 +6,49 @@
 package com.eduit.app.springboot.api;
 
 import com.eduit.app.springboot.model.ProductDTO;
-import com.eduit.app.springboot.model.ResponseContainerResponseDTO;
+import com.eduit.app.springboot.model.ProductListDTO;
+import com.eduit.app.springboot.model.ResponseContainerProductResponseDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
-import io.swagger.v3.oas.annotations.responses.ApiResponses;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.validation.Valid;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2023-03-15T19:40:20.264214924Z[GMT]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2023-03-21T20:52:22.931324395Z[GMT]")
 @Validated
 public interface ProductsApi {
 
     @Operation(summary = "Create product", description = "Create a product, authentication required.", security = {
-        @SecurityRequirement(name = "bearerAuth")    }, tags={ "backoffice" })
+        @SecurityRequirement(name = "bearerAuth")    }, tags={ "store" })
     @ApiResponses(value = { 
-        @ApiResponse(responseCode = "200", description = "successful operation response a ProductDTO as data", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ResponseContainerResponseDTO.class))),
+        @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ResponseContainerProductResponseDTO.class))),
         
         @ApiResponse(responseCode = "401", description = "Access token is missing or invalid") })
     @RequestMapping(value = "/products/product",
         produces = { "application/json" }, 
         consumes = { "application/json" }, 
         method = RequestMethod.POST)
-    ResponseEntity<ResponseContainerResponseDTO> createProduct(@Parameter(in = ParameterIn.DEFAULT, description = "Created product object", schema=@Schema()) @Valid @RequestBody ProductDTO body);
-
-
-    @Operation(summary = "Delete product", description = "Delete a product, authentication required.", security = {
-        @SecurityRequirement(name = "bearerAuth")    }, tags={ "backoffice" })
-    @ApiResponses(value = { 
-        @ApiResponse(responseCode = "200", description = "successful operation response a EmptyResponseDTO as data", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ResponseContainerResponseDTO.class))),
-        
-        @ApiResponse(responseCode = "401", description = "Access token is missing or invalid") })
-    @RequestMapping(value = "/products/product/{productId}",
-        produces = { "application/json" }, 
-        method = RequestMethod.DELETE)
-    ResponseEntity<ResponseContainerResponseDTO> deleteProduct(@Parameter(in = ParameterIn.PATH, description = "the product id", required=true, schema=@Schema()) @PathVariable("productId") Long productId);
+    ResponseEntity<ResponseContainerProductResponseDTO> createProduct(@Parameter(in = ParameterIn.DEFAULT, description = "Created product object", schema=@Schema()) @Valid @RequestBody ProductDTO body);
 
 
     @Operation(summary = "Retrieve a list of products", description = "Retrieve a list of products, authentication required.", security = {
-        @SecurityRequirement(name = "bearerAuth")    }, tags={ "backoffice" })
+        @SecurityRequirement(name = "bearerAuth")    }, tags={ "store" })
     @ApiResponses(value = { 
-        @ApiResponse(responseCode = "200", description = "successful operation response a ProductListDTO as data", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ResponseContainerResponseDTO.class))) })
+        @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ProductListDTO.class))) })
     @RequestMapping(value = "/products/product",
         produces = { "application/json" }, 
         method = RequestMethod.GET)
-    ResponseEntity<ResponseContainerResponseDTO> retrieveAllProducts();
-
-
-    @Operation(summary = "Retrieve product", description = "Retrieve a product, authentication required.", security = {
-        @SecurityRequirement(name = "bearerAuth")    }, tags={ "backoffice" })
-    @ApiResponses(value = { 
-        @ApiResponse(responseCode = "200", description = "successful operation response a ProductDTO as data", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ResponseContainerResponseDTO.class))) })
-    @RequestMapping(value = "/products/product/{productId}",
-        produces = { "application/json" }, 
-        method = RequestMethod.GET)
-    ResponseEntity<ResponseContainerResponseDTO> retrieveProduct(@Parameter(in = ParameterIn.PATH, description = "the product id", required=true, schema=@Schema()) @PathVariable("productId") Long productId);
-
-
-    @Operation(summary = "Update product", description = "Update a product, authentication required.", security = {
-        @SecurityRequirement(name = "bearerAuth")    }, tags={ "backoffice" })
-    @ApiResponses(value = { 
-        @ApiResponse(responseCode = "200", description = "successful operation response a ProductDTO as data", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ResponseContainerResponseDTO.class))),
-        
-        @ApiResponse(responseCode = "401", description = "Access token is missing or invalid") })
-    @RequestMapping(value = "/products/product/{productId}",
-        produces = { "application/json" }, 
-        consumes = { "application/json" }, 
-        method = RequestMethod.PUT)
-    ResponseEntity<ResponseContainerResponseDTO> updateProduct(@Parameter(in = ParameterIn.PATH, description = "the product id", required=true, schema=@Schema()) @PathVariable("productId") Long productId, @Parameter(in = ParameterIn.DEFAULT, description = "Updated product object", schema=@Schema()) @Valid @RequestBody ProductDTO body);
+    ResponseEntity<ProductListDTO> retrieveAllProducts();
 
 }
 

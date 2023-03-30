@@ -1,9 +1,11 @@
 package com.eduit.app.springboot.repository;
 
 import com.eduit.app.springboot.entity.UserEntity;
-import org.springframework.data.repository.Repository;
+import org.springframework.data.repository.CrudRepository;
 
-public interface UserRepository extends Repository <UserEntity, Long> {
+import java.util.Optional;
 
-    UserEntity findOneByUserName(String userName);
+public interface UserRepository extends CrudRepository<UserEntity, Long> {
+
+	Optional<UserEntity> findOneByUsername(String username);
 }
