@@ -24,16 +24,16 @@ public class UserDetailServiceImpl implements UserDetailsService {
      * Required to check authorities
      */
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        UserEntity user = findByUsername(username);
+    public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
+        UserEntity user = findByUsername(userName);
         Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
-        authorities.add(new SimpleGrantedAuthority(username));
+        authorities.add(new SimpleGrantedAuthority(userName));
         UserDetails userDetails = new User(user.getUserName(), user.getPassword(), authorities);
         return userDetails;
     }
 
-    private UserEntity findByUsername(final String username) {
-        Optional<UserEntity> opUsr = userRepository.findOneByUsername(username);
+    private UserEntity findByUsername(final String userName) {
+        Optional<UserEntity> opUsr = userRepository.findOneByUsername(userName);
         if (opUsr.isEmpty()) {
             throw new RuntimeException("User not found");
         }

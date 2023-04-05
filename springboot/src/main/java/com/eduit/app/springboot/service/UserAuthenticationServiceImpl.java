@@ -22,8 +22,8 @@ public class UserAuthenticationServiceImpl implements UserAuthenticationService 
 
 
     @Override
-    public Map<String, String> login(String username, String password) {
-        UserDetails optUser = userDetailService.loadUserByUsername(username);
+    public Map<String, String> login(String userName, String password) {
+        UserDetails optUser = userDetailService.loadUserByUsername(userName);
         if (!passwordEncoder.matches(password, optUser.getPassword())) {
             throw new RuntimeException("The passwords doesn't match");
         }

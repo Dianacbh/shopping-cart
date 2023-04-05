@@ -34,7 +34,7 @@ public interface TokenApi {
     @RequestMapping(value = "/token/login",
         produces = { "application/json" }, 
         method = RequestMethod.POST)
-    ResponseEntity<ResponseContainerResponseDTO> login(@NotNull @Parameter(in = ParameterIn.QUERY, description = "the username to authenticate" ,required=true,schema=@Schema()) @Valid @RequestParam(value = "username", required = true) String username, @NotNull @Parameter(in = ParameterIn.QUERY, description = "the password to authenticate" ,required=true,schema=@Schema()) @Valid @RequestParam(value = "password", required = true) String password);
+    ResponseEntity<ResponseContainerResponseDTO> login(@NotNull @Parameter(in = ParameterIn.QUERY, description = "the userName to authenticate" ,required=true,schema=@Schema()) @Valid @RequestParam(value = "userName", required = true) String userName, @NotNull @Parameter(in = ParameterIn.QUERY, description = "the password to authenticate" ,required=true,schema=@Schema()) @Valid @RequestParam(value = "password", required = true) String password);
 
 
     @Operation(summary = "Destroy created session", description = "Destroy created session, authentication required.", security = {

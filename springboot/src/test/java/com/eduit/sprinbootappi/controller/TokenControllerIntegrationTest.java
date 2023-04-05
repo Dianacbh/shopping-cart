@@ -74,7 +74,7 @@ public class TokenControllerIntegrationTest {
     public void testUserLogin_OK() {
         createUser("pedrito", "123", "ROLE_ADMIN");
 
-        ResponseEntity<ResponseContainerResponseDTO> response = template.postForEntity(baseUrl + "/token/login?username=pedrito&password=123",
+        ResponseEntity<ResponseContainerResponseDTO> response = template.postForEntity(baseUrl + "/token/login?userName=pedrito&password=123",
                 null, ResponseContainerResponseDTO.class);
         assertNotNull(response);
         ResponseContainerResponseDTO entity = response.getBody();
@@ -86,7 +86,7 @@ public class TokenControllerIntegrationTest {
     public void testUserLogin_invalidPasswordOK() {
         createUser("pedrito", "888");
 
-        ResponseEntity<ResponseContainerResponseDTO> response = template.postForEntity(baseUrl + "/token/login?username=pedrito&password=123",
+        ResponseEntity<ResponseContainerResponseDTO> response = template.postForEntity(baseUrl + "/token/login?userName=pedrito&password=123",
                 null, ResponseContainerResponseDTO.class);
         assertNotNull(response);
         ResponseContainerResponseDTO entity = response.getBody();
@@ -102,7 +102,7 @@ public class TokenControllerIntegrationTest {
     public void testUserLogin_invalidUserOK() {
         createUser("martin", "888", "ROLE_ADMIN", false);
 
-        ResponseEntity<ResponseContainerResponseDTO> response = template.postForEntity(baseUrl + "/token/login?username=pedrito&password=123",
+        ResponseEntity<ResponseContainerResponseDTO> response = template.postForEntity(baseUrl + "/token/login?userName=pedrito&password=123",
                 null, ResponseContainerResponseDTO.class);
         assertNotNull(response);
         ResponseContainerResponseDTO entity = response.getBody();

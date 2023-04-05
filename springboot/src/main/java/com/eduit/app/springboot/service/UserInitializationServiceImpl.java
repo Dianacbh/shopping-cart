@@ -16,7 +16,7 @@ public class UserInitializationServiceImpl implements UserInitializationService 
     private PasswordEncoder encoder;
 
     @Value("${api.defaultuser.username}")
-    private String username;
+    private String userName;
     @Value("${api.defaultuser.password}")
     private String password;
     @Value("${api.defaultuser.name}")
@@ -38,7 +38,7 @@ public class UserInitializationServiceImpl implements UserInitializationService 
             adminUser.setFirstName(name);
             adminUser.setLastName(lastname);
             adminUser.setEmail(email);
-            adminUser.setUsername(username);
+            adminUser.setUserName(userName);
             adminUser.setRole(UserRoleEnum.ROLE_ADMIN);
             adminUser.setPassword(encoder.encode(password));
             adminUser.setDateCreated(new Date());

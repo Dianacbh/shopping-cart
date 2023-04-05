@@ -36,8 +36,8 @@ public class JWTServiceImpl implements JWTService {
 
     @Override
     public Map<String, String> validateRefreshToken(String refreshToken) {
-        String username = jwtTokenUtil.getUsernameFromToken(refreshToken);
-        UserDetails user = userDetailsService.loadUserByUsername(username);
+        String userName = jwtTokenUtil.getUsernameFromToken(refreshToken);
+        UserDetails user = userDetailsService.loadUserByUsername(userName);
         Map<String, String> tokens = generateTokenSet(user);
         return tokens;
     }

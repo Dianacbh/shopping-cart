@@ -25,16 +25,16 @@ public class TokenController extends BaseController implements TokenApiDelegate 
         jwtService = theJwtService;
     }
 
-    public ResponseEntity<ResponseContainerResponseDTO> login(String username,
+    public ResponseEntity<ResponseContainerResponseDTO> login(String userName,
                                                               String password) {
         Long start = System.currentTimeMillis();
         LOGGER.debug("login");
         ResponseContainerResponseDTO response = new ResponseContainerResponseDTO();
         try {
-            Map<String, String> tokens = userAuthenticationService.login(username, password);
+            Map<String, String> tokens = userAuthenticationService.login(userName, password);
             return responseTokens(start, response, tokens);
         } catch (Exception e) {
-            LOGGER.error(String.format("Login failed for user: \"%s\" pwd: \"%s\" ", username, password), e);
+            LOGGER.error(String.format("Login failed for user: \"%s\" pwd: \"%s\" ", userName, password), e);
             return buildErrorResponse(response, HttpStatus.BAD_REQUEST, e, "A1", start);
         }
     }

@@ -54,20 +54,20 @@ public class CustomAuthorizationFilter extends OncePerRequestFilter {
         // bypass login  and refresh "/api/v1/login"
         if (!request.getServletPath().equals(basePath + loginPath)
                 && !request.getServletPath().equals(basePath + refreshTokenPath)) {
-            String username = null;
+            String userName = null;
             String jwtToken = null;
             String authHeader = request.getHeader(HttpHeaders.AUTHORIZATION);
             if (authHeader != null && authHeader.startsWith(BEARER_TOKEN_PREFIX)) {
                 jwtToken = authHeader.substring(BEARER_TOKEN_PREFIX.length());
                 try {
-                    username = validateToken(jwtToken);
+                    userName = validateToken(jwtToken);
                 } catch (RuntimeException ex) {
                     exceptionResponse(response, ex);
                 }
 
             }
             //Once we get the token validate it.
-            authenticateUsername(request, username, jwtToken);
+            authenticateUsername(request, userName, jwtToken);
         }
         filterChain.doFilter(request, response);
     }
@@ -83,9 +83,9 @@ public class CustomAuthorizationFilter extends OncePerRequestFilter {
     }
 
     private String validateToken(final String jwtToken) {
-        String username = null;
+        String userName = null;
         try {
-            username = jwtTokenUtil.getUsernameFromToken(jwtToken);
+            userName = jwtTokenUtil.getUsernameFromToken(jwtToken);
         } catch (IllegalArgumentException e) {
             LOGGER.error("Unable to get JWT Token", e);
             throw new RuntimeException(e);
@@ -93,12 +93,12 @@ public class CustomAuthorizationFilter extends OncePerRequestFilter {
             LOGGER.error("JWT Token has expired", e);
             throw new RuntimeException(e);
         }
-        return username;
+        return userName;
     }
 
-    private void authenticateUsername(HttpServletRequest request, String username, String jwtToken) {
-        if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-            UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+    private void authenticateUsername(HttpServletRequest request, String userName, String jwtToken) {
+        if (userName != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+            UserDetails userDetails = userDetailsService.loadUserByUsername(userName);
 
             // if token is valid configure Spring Security to manually set authentication
             if (jwtTokenUtil.validateToken(jwtToken, userDetails)) {
