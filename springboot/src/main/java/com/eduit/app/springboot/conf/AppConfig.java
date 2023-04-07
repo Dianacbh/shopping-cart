@@ -53,7 +53,7 @@ public class AppConfig {
     @Bean
     public ProductController getProductController(CategoryAdministrationService categoryAdministrationService,
                                                   ProductAdministrationService productAdministrationService) {
-        return new ProductController(categoryAdministrationService, productAdministrationService);
+        return new ProductController(categoryAdministrationService, (com.eduit.app.springboot.service.utils.ProductAdministrationService) productAdministrationService);
     }
 
     @Bean

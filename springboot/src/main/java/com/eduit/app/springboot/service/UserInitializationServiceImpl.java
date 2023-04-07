@@ -1,11 +1,14 @@
 package com.eduit.app.springboot.service;
 
 import com.eduit.app.springboot.entity.UserEntity;
+import com.eduit.app.springboot.entity.UserRoleEnum;
 import com.eduit.app.springboot.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.password.PasswordEncoder;
+
+import java.util.Date;
 
 public class UserInitializationServiceImpl implements UserInitializationService {
 

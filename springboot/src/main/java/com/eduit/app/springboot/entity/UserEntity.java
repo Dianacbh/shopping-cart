@@ -1,13 +1,11 @@
 package com.eduit.app.springboot.entity;
 
 import org.apache.commons.lang3.Validate;
-import org.springframework.boot.autoconfigure.ldap.embedded.EmbeddedLdapProperties;
 
 import javax.persistence.*;
 import java.util.Date;
 
 /**
- * Estamos creando el esqueleto y haciendo pruebas con la BD
  * @author diana
  */
 @Entity
@@ -22,7 +20,7 @@ public class UserEntity {
     private Long id;
 
     @Column(nullable = false, unique = true)
-    private String username;
+    private String userName;
 
     @Column(name = "first_name", nullable = false)
     private String firstName;
@@ -52,6 +50,7 @@ public class UserEntity {
     public Long getId() {
         return id;
     }
+
     public void setId(final Long id) {
         this.id = id;
     }
@@ -93,6 +92,7 @@ public class UserEntity {
         Validate.notBlank(password, "The password cannot be null or black");
         this.password = password;
     }
+
     public String getEmail() {
         return email;
     }
@@ -105,7 +105,7 @@ public class UserEntity {
         return role;
     }
 
-    public void setRole(UserRoleEnum) {
+    public void setRole(UserRoleEnum role) {
         this.role = role;
     }
 
@@ -126,7 +126,4 @@ public class UserEntity {
     }
 
 
-
-
-
-
+}

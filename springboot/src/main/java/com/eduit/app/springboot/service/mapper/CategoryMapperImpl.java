@@ -25,8 +25,13 @@ public class CategoryMapperImpl implements CategoryMapper {
 
 
     @Override
+    public CategoryEntity map(Object theCategory) {
+        return null;
+    }
+
+    @Override
     public CategoryEntity map(final CategoryDTO theCategory) {
-        LOGGER.trace(String.format("Mapping CategoryEntity with attributes: %s to: CategoryDTO", theCategory.toString()));
+        LOGGER.info(String.format("Mapping CategoryEntity with attributes: %s to: CategoryDTO", theCategory.toString()));
         CategoryEntity response = new CategoryEntity();
         response.setId(theCategory.getId());
         response.setName(theCategory.getName());
@@ -52,7 +57,7 @@ public class CategoryMapperImpl implements CategoryMapper {
 
 
     public CategoryDTO map(final CategoryEntity theCategory) {
-        LOGGER.trace(String.format("Mapping CategoryDTO with attributes: %s to: CategoryEntity", theCategory.toString()));
+        LOGGER.info(String.format("Mapping CategoryDTO with attributes: %s to: CategoryEntity", theCategory.toString()));
         CategoryDTO response = new CategoryDTO();
         response.setId(theCategory.getId());
         response.setName(theCategory.getName());
@@ -73,7 +78,7 @@ public class CategoryMapperImpl implements CategoryMapper {
 
     @Override
     public CategoryEntity map(CategoryRequestDTO theCategory) {
-        LOGGER.trace(String.format("Mapping CategoryEntity with attributes: %s to: CategoryRequestDTO", theCategory.toString()));
+        LOGGER.info(String.format("Mapping CategoryEntity with attributes: %s to: CategoryRequestDTO", theCategory.toString()));
         CategoryEntity response = new CategoryEntity();
         response.setName(theCategory.getName());
         Long parentCategoryId = theCategory.getParentCategoryId();

@@ -1,19 +1,19 @@
 package com.eduit.app.springboot.controller;
 
+import com.eduit.app.springboot.DTO.CategoryRequestDTO;
 import com.eduit.app.springboot.DTO.ProductRequestDTO;
-import com.eduit.app.springboot.model.ProductDTO;
-import com.eduit.app.springboot.model.ProductListDTO;
-import com.eduit.app.springboot.model.ResponseContainerResponseDTO;
+import com.eduit.app.springboot.api.ProductsApi;
+import com.eduit.app.springboot.model.*;
 import com.eduit.app.springboot.service.CategoryAdministrationService;
-import com.eduit.app.springboot.service.ProductAdministrationService;
+import com.eduit.app.springboot.service.utils.ProductAdministrationService;
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;
-import java.util.logging.Logger;
 
-public class ProductController extends BaseController implements ProductsApiDelegate {
+public class ProductController extends BaseController implements ProductsApi {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ProductController.class);
 
@@ -27,6 +27,11 @@ public class ProductController extends BaseController implements ProductsApiDele
     }
 
     @Override
+    public ResponseEntity<ResponseContainerProductResponseDTO> createProduct(ProductDTO body) {
+        return null;
+    }
+
+    @Override
     public ResponseEntity<ResponseContainerResponseDTO> retrieveAllProducts() {
         Long start = System.currentTimeMillis();
         ResponseContainerResponseDTO responseContainer = new ResponseContainerResponseDTO();
@@ -34,11 +39,10 @@ public class ProductController extends BaseController implements ProductsApiDele
             List<ProductDTO> product = productAdministrationService.retrieveAll();
             ProductListDTO response = new ProductListDTO();
             response.setItems(product);
-            responseContainer.data(response);
             responseContainer.setMeta(buildMeta(start));
             return ResponseEntity.status(HttpStatus.OK).body(responseContainer);
         } catch (Exception e) {
-            LOGGER.error(String.format("An error occurred retrieve all products"), e);
+            LOGGER.info(String.format("An error occurred retrieve all products"), e);
             return buildErrorResponse(responseContainer, HttpStatus.BAD_REQUEST, e, "A1", start);
         }
     }
@@ -48,12 +52,10 @@ public class ProductController extends BaseController implements ProductsApiDele
         Long start = System.currentTimeMillis();
         ResponseContainerResponseDTO responseContainer = new ResponseContainerResponseDTO();
         try {
-            ProductDTO response = productAdministrationService.create(productDTO);
-            responseContainer.data(response);
             responseContainer.setMeta(buildMeta(start));
             return ResponseEntity.status(HttpStatus.CREATED).body(responseContainer);
         } catch (Exception e) {
-            LOGGER.error(String.format("An error occurred creating a product: \"%s\" ", productDTO), e);
+            LOGGER.info(String.format("An error occurred creating a product: \"%s\" ", productDTO), e);
             return buildErrorResponse(responseContainer, HttpStatus.BAD_REQUEST, e, "A1", start);
         }
     }
@@ -64,13 +66,10 @@ public class ProductController extends BaseController implements ProductsApiDele
         ResponseContainerResponseDTO responseContainer = new ResponseContainerResponseDTO();
         try {
             productAdministrationService.delete(productId);
-            EmptyResponseDTO response = new EmptyResponseDTO();
-            response.setDate(OffsetDateTime.now());
-            responseContainer.data(response);
             responseContainer.setMeta(buildMeta(start));
             return ResponseEntity.status(HttpStatus.OK).body(responseContainer);
         } catch (Exception e) {
-            LOGGER.error(String.format("An error occurred deleting a product: \"%s\" ", productId), e);
+            LOGGER.info(String.format("An error occurred deleting a product: \"%s\" ", productId), e);
             return buildErrorResponse(responseContainer, HttpStatus.BAD_REQUEST, e, "A1", start);
         }
     }
@@ -80,12 +79,10 @@ public class ProductController extends BaseController implements ProductsApiDele
         Long start = System.currentTimeMillis();
         ResponseContainerResponseDTO responseContainer = new ResponseContainerResponseDTO();
         try {
-            ProductDTO response = productAdministrationService.retrieve(productId);
-            responseContainer.data(response);
             responseContainer.setMeta(buildMeta(start));
             return ResponseEntity.status(HttpStatus.OK).body(responseContainer);
         } catch (Exception e) {
-            LOGGER.error(String.format("An error occurred retrieving product: \"%d\" ", productId), e);
+            LOGGER.info(String.format("An error occurred retrieving product: \"%d\" ", productId), e);
             return buildErrorResponse(responseContainer, HttpStatus.BAD_REQUEST, e, "A1", start);
         }
     }
@@ -99,8 +96,6 @@ public class ProductController extends BaseController implements ProductsApiDele
             return buildErrorResponse(responseContainer, HttpStatus.BAD_REQUEST, null, "A1", start);
         }
         try {
-            ProductDTO response = productAdministrationService.update(productDTO);
-            responseContainer.data(response);
             responseContainer.setMeta(buildMeta(start));
             return ResponseEntity.status(HttpStatus.OK).body(responseContainer);
         } catch (Exception e) {
@@ -115,7 +110,6 @@ public class ProductController extends BaseController implements ProductsApiDele
         ResponseContainerResponseDTO responseContainer = new ResponseContainerResponseDTO();
         try {
             CategoryDTO response = categoryAdministrationService.create(categoryRequestDTO);
-            responseContainer.data(response);
             responseContainer.setMeta(buildMeta(start));
             return ResponseEntity.status(HttpStatus.CREATED).body(responseContainer);
         } catch (Exception e) {
@@ -130,9 +124,6 @@ public class ProductController extends BaseController implements ProductsApiDele
         ResponseContainerResponseDTO responseContainer = new ResponseContainerResponseDTO();
         try {
             categoryAdministrationService.delete(categoryId);
-            EmptyResponseDTO response = new EmptyResponseDTO();
-            response.setDate(OffsetDateTime.now());
-            responseContainer.data(response);
             responseContainer.setMeta(buildMeta(start));
             return ResponseEntity.status(HttpStatus.OK).body(responseContainer);
         } catch (Exception e) {
@@ -147,9 +138,6 @@ public class ProductController extends BaseController implements ProductsApiDele
         ResponseContainerResponseDTO responseContainer = new ResponseContainerResponseDTO();
         try {
             List<CategoryDTO> categories = categoryAdministrationService.retrieveAll();
-            CategoryListDTO response = new CategoryListDTO();
-            response.setItems(categories);
-            responseContainer.data(response);
             responseContainer.setMeta(buildMeta(start));
             return ResponseEntity.status(HttpStatus.CREATED).body(responseContainer);
         } catch (Exception e) {
@@ -164,8 +152,6 @@ public class ProductController extends BaseController implements ProductsApiDele
         ResponseContainerResponseDTO responseContainer = new ResponseContainerResponseDTO();
         try {
             CategoryDTO response = categoryAdministrationService.retrieve(categoryId);
-            responseContainer.data(response);
-            responseContainer.setMeta(buildMeta(start));
             return ResponseEntity.status(HttpStatus.OK).body(responseContainer);
         } catch (Exception e) {
             LOGGER.error(String.format("An error occurred retrieving the category: \"%d\" ", categoryId), e);
@@ -184,8 +170,6 @@ public class ProductController extends BaseController implements ProductsApiDele
         }
         try {
             CategoryDTO response = categoryAdministrationService.update(categoryDTO);
-            responseContainer.data(response);
-            responseContainer.setMeta(buildMeta(start));
             return ResponseEntity.status(HttpStatus.OK).body(responseContainer);
         } catch (Exception e) {
             LOGGER.error(String.format("An error occurred updating a product: \"%s\" ", categoryDTO), e);

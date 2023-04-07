@@ -5,6 +5,7 @@
  */
 package com.eduit.app.springboot.api;
 
+import com.eduit.app.springboot.model.ResponseContainerResponseDTO;
 import com.eduit.app.springboot.model.UserListDTO;
 import com.eduit.app.springboot.model.UserRequestDTO;
 import io.swagger.v3.oas.annotations.Operation;

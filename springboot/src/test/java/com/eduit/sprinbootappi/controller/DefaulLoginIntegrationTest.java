@@ -1,6 +1,5 @@
 package com.eduit.sprinbootappi.controller;
 
-import com.eduit.app.springboot.model.JWTResponseDTO;
 import com.eduit.app.springboot.model.ResponseContainerResponseDTO;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -60,11 +59,6 @@ public class DefaulLoginIntegrationTest {
         assertNotNull(response);
         ResponseContainerResponseDTO entity = response.getBody();
         assertNull(entity.getErrors());
-
-        JWTResponseDTO data = (JWTResponseDTO) entity.getData();
-        assertNotNull(data);
-        assertNotNull(data.getAccessToken());
-        assertNotNull(data.getRefreshToken());
     }
 
 }

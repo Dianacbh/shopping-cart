@@ -1,6 +1,7 @@
 package com.eduit.sprinbootappi.controller;
 
 import com.eduit.app.springboot.entity.UserEntity;
+import com.eduit.app.springboot.entity.UserRoleEnum;
 import com.eduit.app.springboot.model.ErrorItemDTO;
 import com.eduit.app.springboot.model.ResponseContainerResponseDTO;
 import com.eduit.app.springboot.repository.UserRepository;
@@ -129,7 +130,7 @@ public class TokenControllerIntegrationTest {
         user.setLastName("Gomez");
         user.setUserName(username);
         if (hasRole) {
-            user.setRole();
+            user.setRole(UserRoleEnum.ROLE_ADMIN);
         }
         user.setPassword(encoder.encode(password));
         user.setDateCreated(new Date());

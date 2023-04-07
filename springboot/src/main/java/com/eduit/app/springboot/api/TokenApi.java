@@ -5,6 +5,7 @@
  */
 package com.eduit.app.springboot.api;
 
+import com.eduit.app.springboot.model.ResponseContainerResponseDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;

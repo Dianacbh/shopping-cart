@@ -5,9 +5,9 @@
  */
 package com.eduit.app.springboot.api;
 
-import com.eduit.app.springboot.model.ProductDTO;
-import com.eduit.app.springboot.model.ProductListDTO;
-import com.eduit.app.springboot.model.ResponseContainerProductResponseDTO;
+import com.eduit.app.springboot.DTO.CategoryRequestDTO;
+import com.eduit.app.springboot.DTO.ProductRequestDTO;
+import com.eduit.app.springboot.model.*;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
@@ -48,7 +48,24 @@ public interface ProductsApi {
     @RequestMapping(value = "/products/product",
         produces = { "application/json" }, 
         method = RequestMethod.GET)
-    ResponseEntity<ProductListDTO> retrieveAllProducts();
+    ResponseEntity<ResponseContainerResponseDTO> retrieveAllProducts();
 
+    ResponseEntity<ResponseContainerResponseDTO> createProduct(ProductRequestDTO productDTO);
+
+    ResponseEntity<ResponseContainerResponseDTO> deleteProduct(Long productId);
+
+    ResponseEntity<ResponseContainerResponseDTO> retrieveProduct(Long productId);
+
+    ResponseEntity<ResponseContainerResponseDTO> updateProduct(Long productId, ProductDTO productDTO);
+
+    ResponseEntity<ResponseContainerResponseDTO> createCategory(CategoryRequestDTO categoryRequestDTO);
+
+    ResponseEntity<ResponseContainerResponseDTO> deleteCategory(Long categoryId);
+
+    ResponseEntity<ResponseContainerResponseDTO> retrieveAllCategory();
+
+    ResponseEntity<ResponseContainerResponseDTO> retrieveCategory(Long categoryId);
+
+    ResponseEntity<ResponseContainerResponseDTO> updateCategory(Long categoryId, CategoryDTO categoryDTO);
 }
 

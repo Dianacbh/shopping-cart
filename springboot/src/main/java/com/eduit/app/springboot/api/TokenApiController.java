@@ -1,5 +1,6 @@
 package com.eduit.app.springboot.api;
 
+import com.eduit.app.springboot.model.ResponseContainerResponseDTO;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;

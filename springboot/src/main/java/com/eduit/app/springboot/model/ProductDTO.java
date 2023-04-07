@@ -127,13 +127,12 @@ public class ProductDTO   {
 
   /**
    * the stock quantity.
+   *
    * @return qty
    **/
   @Schema(example = "2", required = true, description = "the stock quantity.")
-      @NotNull
 
-    @Valid
-    public BigDecimal getQty() {
+  public BigDecimal getQty() {
     return qty;
   }
 

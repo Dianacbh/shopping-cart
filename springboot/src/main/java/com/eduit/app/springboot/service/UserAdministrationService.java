@@ -13,6 +13,7 @@ public abstract class UserAdministrationService {
     public abstract UserDTO retrieve(Long id) throws RuntimeException;
 
     public UserDTO create(UserRequestDTO userDTO) {
+        return null;
     }
 
     public abstract UserDTO update(UserDTO element) throws RuntimeException;

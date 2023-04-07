@@ -3,6 +3,7 @@ package com.eduit.app.springboot.model;
 import org.springframework.validation.annotation.Validated;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -49,4 +50,7 @@ public class UserListDTO extends ArrayList<UserDTO>  {
     }
     return o.toString().replace("\n", "\n    ");
   }
+
+    public void setItems(List<UserDTO> listUser) {
+    }
 }
